@@ -1,0 +1,232 @@
+#:kivy 1.0
+
+#:import Button kivy.uix.button.Button
+#:import TextInput kivy.uix.textinput.TextInput
+#:import CanvasWidget main
+<MyButton@Button>:
+    size_hint: [None, None]
+    #size: [100, 100]
+<Controller>:
+    #label_wid: my_custom_label
+    rows: 1
+    BoxLayout:
+        orientation: 'vertical'
+        padding: [10, 10, 10, 10]
+        spacing: 10
+
+        
+        BoxLayout:
+            orientation: 'horizontal'
+            # padding: [10, 10, 10, 10]
+            # creating Button
+            
+            spacing: 10
+            size_hint_y: None
+            height: '50dp'
+            #canvas:
+            #    Color:
+            #        rgb: [.0, .0, 1.0]
+            #    Rectangle:
+            #        pos: self.pos
+            #        size: self.size
+            AnchorLayout:
+                anchor_x: 'center'
+                anchor_y: 'top'
+                Label:
+                    text: '[color=ff3333][b]The Road So Far[/b]'
+                    markup: True
+                    size_hint_y: None
+                    height: '30dp'
+
+            AnchorLayout:
+                anchor_x: 'center'
+                anchor_y: 'top'
+                Button:
+                    id: load_graph
+                    text: "Загрузить граф"
+                    size_hint_y: None
+                    height: '30dp'
+                
+            AnchorLayout:
+                anchor_x: 'center'
+                anchor_y: 'top'
+                Button:
+                    id: save_graph
+                    text: "Сохранить граф"
+                    size_hint_y: None
+                    height: '30dp'
+                    on_parent: drop_save_graph.dismiss()
+                    on_release: drop_save_graph.open(self)
+                DropDown:
+                    id: drop_save_graph
+                    on_select: btn.text = f'{args[1]}'
+                    auto_width: False
+                    size_hint_x: None
+                    width: 200
+                    Button:
+                        id: save_graph_matrix
+                        text: 'Сохранить граф матрицей'
+                        size_hint_y: None
+                        height: '30dp'
+                    Button:
+                        id: save_graph_list
+                        text: 'Сохранить граф списком'
+                        size_hint_y: None
+                        height: '30dp'
+                    Button:
+                        id: save_result
+                        text: 'Сохранить результат'
+                        size_hint_y: None
+                        height: '30dp'
+            AnchorLayout:
+                anchor_x: 'center'
+                anchor_y: 'top'
+                Button:
+                    id: clear
+                    text: "Очистить"
+                    size_hint_y: None
+                    height: '30dp'
+                    on_parent: drop_clear.dismiss()
+                    on_release: drop_clear.open(self)
+                DropDown:
+                    id: drop_clear
+                    on_select: btn.text = f'{args[1]}'
+                    Button:
+                        id: clear_graph
+                        text: 'Очистить граф'
+                        size_hint_y: None
+                        height: '30dp'
+                    Button:
+                        id: clear_result
+                        text: 'Очитсить результат'
+                        size_hint_y: None
+                        height: '30dp'
+            AnchorLayout:
+                anchor_x: 'center'
+                anchor_y: 'top'
+                Button:
+                    id: help
+                    text: "а помогите"
+                    size_hint_y: None
+                    height: '30dp'
+                    on_parent: drop_help.dismiss()
+                    on_release: drop_help.open(self)
+                DropDown:
+                    id: drop_help
+                    on_select: btn.text = f'{args[1]}'
+                    auto_width: False
+                    size_hint_x: None
+                    width: 200
+                    Button:
+                        id: help_example
+                        text: 'Пример работы'
+                        size_hint_y: None
+                        height: '30dp'
+                    Button:
+                        id: help_step_by_step_guide
+                        text: 'Пошаговое использование'
+                        size_hint_y: None
+                        height: '30dp'
+            AnchorLayout:
+                anchor_x: 'center'
+                anchor_y: 'top'
+                Button:
+                    id: steps
+                    text: "Этапы работы"
+                    size_hint_y: None
+                    height: '30dp'
+                    on_parent: drop_steps.dismiss()
+                    on_release: drop_steps.open(self)
+                DropDown:
+                    id: drop_steps
+                    on_select: btn.text = f'{args[1]}'
+                    Label:
+                        id: step_1
+                        text: 'First Item'
+                        size_hint_y: None
+                        height: '30dp'
+                    Label:
+                        id: step_2
+                        text: 'Second Item'
+                        size_hint_y: None
+                        height: '30dp'
+           
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint: (1.0, 10.0)
+            # padding: [10, 10, 10, 10]
+            # creating Button
+            spacing: 10
+            # левая часть с матрицей
+            BoxLayout:
+                orientation:'vertical'
+                #size_hint: (1, 1)
+                spacing: 10
+                BoxLayout:
+                    orientation: 'horizontal'
+                    size_hint: (1.0, 0.1)
+                    spacing: 10
+                    Label:
+                        text: 'size'
+                        size_hint: [None, None]
+                        size: (50, 30)
+                    TextInput:
+                        id: input
+                        text: '5'
+                        size_hint: [None, None]
+                        size: (50, 30)
+                        on_text: app.create_adjacency_matrix()
+                    Button:
+                        text: 'Draw this graph'
+                        size_hint: [None, None]
+                        size: (120, 30)
+                        on_press: app.draw_graph()
+                ScrollView:
+                    bar_width: 12
+                    size: self.size
+                    GridLayout:
+                        id: adjacency_matrix
+                        rows: 5
+                        spacing: 10
+                        size_hint: (None, None)
+                        height: self.minimum_height
+                        width: self.minimum_width
+                        size: (1000, 1000)
+                        orientation: 'lr-tb'
+
+                        #on_parent:
+                        #    if not self.children: [self.add_widget(TextInput(size_hint=[None, None], size=(50, 30), multiline=False)) for i in range(1, 26)]
+                
+            # правая часть с картинкой
+            BoxLayout:
+                id: graph_vis
+                orientation:'vertical'
+                size_hint: (1.0, 1.0)
+                canvas:
+                    Color:
+                        rgb: 1.0, 0.0, 0.0
+                #CanvasWidget:
+                #    id: draw_graph
+                    
+        
+        BoxLayout:
+            orientation: 'horizontal'
+            # padding: [10, 10, 10, 10]
+            # creating Button
+            spacing: 10
+            AnchorLayout:
+                anchor_x: 'left'
+                anchor_y: 'bottom'
+                Button:
+                    text: 'Пошаговое выполнение'
+                    size_hint: [None, None]
+                    size: (250, 30)
+            AnchorLayout:
+                anchor_x: 'right'
+                anchor_y: 'bottom'
+                Button:
+                    text: 'Настройка параметров алгоритма'
+                    size_hint: [None, None]
+                    size: (250, 30)     
+   
