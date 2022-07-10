@@ -1,0 +1,35 @@
+#:kivy 1.0
+
+<FileChooser>:
+	BoxLayout:
+        padding: [10, 10, 10, 10]
+        spacing: 10
+
+	    # Providing the orientation
+	    orientation: 'vertical'
+
+	    # Creating the File list / icon view
+    
+	    BoxLayout:
+            orientation: 'horizontal'
+	    	# Creating list view one side
+	    	FileChooserListView:
+                #filters: ["!*.sys"]
+
+
+	    # Adding label
+	    
+        BoxLayout:
+            orientation:'horizontal'
+            spacing: 10
+            AnchorLayout:
+                anchor_x: 'left'
+                anchor_y: 'bottom'
+                Button:
+                    text: "Назад"
+                    size_hint: [None, None]
+                    size: (150, 30) 
+                    on_press:
+                        root.manager.transition.direction = 'down'
+                        root.manager.transition.duration = 0.3
+                        root.manager.current = 'screen_main'

@@ -1,6 +1,9 @@
 from kivy.uix.screenmanager import Screen
 
 class ScreenSettings(Screen):
+    def __init__(self, controller, **kwargs):
+        super(ScreenSettings, self).__init__(**kwargs)
+        self.controller = controller
     list_of_function_names = {
             'individual_creator_method' : {'_' : '_',
                                             'another_function' : 'другая функция',
@@ -23,13 +26,24 @@ class ScreenSettings(Screen):
         }
 
     def save_settings(self):
-        POPULATION_SIZE = self.ids.population_size
-        P_CROSSOVER = self.ids.p_crossover
-        P_MUTATION = self.ids.p_mutation
-        MAX_GENERATIONS = self.ids.max_generations
+        POPULATION_SIZE = str(self.ids.population_size.text)
+        P_CROSSOVER = str(self.ids.p_crossover.text)
+        P_MUTATION = str(self.ids.p_mutation.text)
+        MAX_GENERATIONS = str(self.ids.max_generations.text)
         individual_creator_method = list(self.list_of_function_names['individual_creator_method'].keys())[list(self.list_of_function_names['individual_creator_method'].values()).index(self.ids.individual_creator_method.text)]
         population_creator_method = list(self.list_of_function_names['individual_creator_method'].keys())[list(self.list_of_function_names['individual_creator_method'].values()).index(self.ids.individual_creator_method.text)]
         cx_method = list(self.list_of_function_names['individual_creator_method'].keys())[list(self.list_of_function_names['individual_creator_method'].values()).index(self.ids.individual_creator_method.text)]
         mut_method = list(self.list_of_function_names['individual_creator_method'].keys())[list(self.list_of_function_names['individual_creator_method'].values()).index(self.ids.individual_creator_method.text)]
         select_method = list(self.list_of_function_names['individual_creator_method'].keys())[list(self.list_of_function_names['individual_creator_method'].values()).index(self.ids.individual_creator_method.text)]
         evaluate_method = list(self.list_of_function_names['individual_creator_method'].keys())[list(self.list_of_function_names['individual_creator_method'].values()).index(self.ids.individual_creator_method.text)]
+        new_settings = {'POPULATION_SIZE' : POPULATION_SIZE,
+                    'P_CROSSOVER' : P_CROSSOVER,
+                    'P_MUTATION' : P_MUTATION,
+                    'MAX_GENERATIONS' : MAX_GENERATIONS,
+                    'individual_creator_method' : individual_creator_method,
+                    'population_creator_method' : population_creator_method,
+                    'cx_method' : cx_method,
+                    'mut_method' : mut_method,
+                    'select_method' : select_method,
+                    'evaluate_method' : evaluate_method}
+        self.controller.set_new_settings(new_settings)

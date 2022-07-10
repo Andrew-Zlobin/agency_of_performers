@@ -1,0 +1,41 @@
+#:kivy 1.0
+
+<ScreenHelp>:
+    BoxLayout:
+        orientation:'vertical'
+        spacing: 10
+        padding: 10
+        BoxLayout:
+            orientation:'horizontal'
+            spacing: 10
+            Label:
+                text: '[b]Краткое руководство[/b]'
+                markup: True
+        BoxLayout:
+            orientation:'horizontal'
+            size_hint: (1.0, 10.0)
+            spacing: 10
+            BoxLayout:
+                id: steps
+                orientation:'vertical'
+                size_hint: (0.4, 1.0)
+                spacing: 10
+                Label:
+                    text: '''В настройках введите все численные значения \n(в противном случае будут установлены значения по умолчанию) \nВыберите возможноиспользуемые функции \nДля этого нажмите на название функции, которую хотите изменить \nи выберите подходящую их выпадающего списка \nЗначение количества вершин в графе - целое число \nЗначения длинны путей могут быть нецелыми'''
+                
+                    
+        BoxLayout:
+            orientation:'horizontal'
+            spacing: 10
+            AnchorLayout:
+                anchor_x: 'left'
+                anchor_y: 'bottom'
+                Button:
+                    text: "Назад"
+                    size_hint: [None, None]
+                    size: (150, 30) 
+                    on_press:
+                        root.manager.transition.direction = 'down'
+                        root.manager.transition.duration = 0.3
+                        root.manager.current = 'screen_main'
+            

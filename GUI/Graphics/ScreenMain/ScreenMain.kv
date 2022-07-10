@@ -46,6 +46,11 @@
                     text: "Загрузить граф"
                     size_hint_y: None
                     height: '30dp'
+                    #on_press:
+                    #    root.manager.transition.direction = 'up'
+                    #    root.manager.transition.duration = 0.3
+                    #    root.manager.current = 'choose_file'
+                    on_release: root.show_load()
                 
             AnchorLayout:
                 anchor_x: 'center'
@@ -57,6 +62,7 @@
                     height: '30dp'
                     on_parent: drop_save_graph.dismiss()
                     on_release: drop_save_graph.open(self)
+                    drop_save_graph: drop_save_graph.__self__
                 DropDown:
                     id: drop_save_graph
                     on_select: btn.text = f'{args[1]}'
@@ -68,6 +74,7 @@
                         text: 'Сохранить граф матрицей'
                         size_hint_y: None
                         height: '30dp'
+                        on_release: root.show_save()
                     Button:
                         id: save_graph_list
                         text: 'Сохранить граф списком'
@@ -88,6 +95,7 @@
                     height: '30dp'
                     on_parent: drop_clear.dismiss()
                     on_release: drop_clear.open(self)
+                    drop_clear: drop_clear.__self__
                 DropDown:
                     id: drop_clear
                     on_select: btn.text = f'{args[1]}'
@@ -109,24 +117,29 @@
                     text: "а помогите"
                     size_hint_y: None
                     height: '30dp'
-                    on_parent: drop_help.dismiss()
-                    on_release: drop_help.open(self)
-                DropDown:
-                    id: drop_help
-                    on_select: btn.text = f'{args[1]}'
-                    auto_width: False
-                    size_hint_x: None
-                    width: 200
-                    Button:
-                        id: help_example
-                        text: 'Пример работы'
-                        size_hint_y: None
-                        height: '30dp'
-                    Button:
-                        id: help_step_by_step_guide
-                        text: 'Пошаговое использование'
-                        size_hint_y: None
-                        height: '30dp'
+                    on_press:
+                        root.manager.transition.direction = 'up'
+                        root.manager.transition.duration = 0.3
+                        root.manager.current = 'screen_help'
+                #    on_parent: drop_help.dismiss()
+                #    on_release: drop_help.open(self)
+                #    drop_help: drop_help.__self__
+                #DropDown:
+                #    id: drop_help
+                #    on_select: btn.text = f'{args[1]}'
+                #    auto_width: False
+                #    size_hint_x: None
+                #    width: 200
+                #    Button:
+                #        id: help_example
+                #        text: 'Пример работы'
+                #        size_hint_y: None
+                #        height: '30dp'
+                #    Button:
+                #        id: help_step_by_step_guide
+                #        text: 'Пошаговое использование'
+                #        size_hint_y: None
+                #        height: '30dp'
             AnchorLayout:
                 anchor_x: 'center'
                 anchor_y: 'top'
@@ -137,6 +150,7 @@
                     height: '30dp'
                     on_parent: drop_steps.dismiss()
                     on_release: drop_steps.open(self)
+                    drop_steps: drop_steps.__self__
                 DropDown:
                     id: drop_steps
                     on_select: btn.text = f'{args[1]}'
@@ -197,14 +211,14 @@
                 
             # правая часть с картинкой
             BoxLayout:
-                id: graph_vis
                 orientation:'vertical'
                 size_hint: (1.0, 1.0)
-                canvas:
-                    Color:
-                        rgb: 1.0, 0.0, 0.0
-                #CanvasWidget:
-                #    id: draw_graph
+                StencilView:
+                    id: graph_vis
+                    size: self.parent.size
+                    canvas:
+                        Color:
+                            rgb: 1.0, 0.0, 0.0
                     
         
         BoxLayout:
@@ -234,11 +248,55 @@
                         root.manager.transition.direction = 'left'
                         root.manager.transition.duration = 0.3
                         root.manager.current = 'screen_runalg'
+                        root.controller.begin_alg()
    
 
 
 
 
+<LoadDialog>:
+    BoxLayout:
+        size: root.size
+        pos: root.pos
+        orientation: "vertical"
+        FileChooserListView:
+            id: filechooser
 
+        BoxLayout:
+            size_hint_y: None
+            height: 30
+            Button:
+                text: "Cancel"
+                on_release: root.cancel()
+
+            Button:
+                text: "Load"
+                on_release: root.load(filechooser.path, filechooser.selection)
+
+<SaveDialog>:
+    BoxLayout:
+        size: root.size
+        pos: root.pos
+        orientation: "vertical"
+        FileChooserListView:
+            id: filechooser
+            on_selection: text_input.text = self.selection and self.selection[0] or ''
+
+        TextInput:
+            id: text_input
+            size_hint_y: None
+            height: 30
+            multiline: False
+
+        BoxLayout:
+            size_hint_y: None
+            height: 30
+            Button:
+                text: "Cancel"
+                on_release: root.cancel()
+
+            Button:
+                text: "Save"
+                on_release: root.save(filechooser.path, text_input.text)
 
             

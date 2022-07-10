@@ -23,48 +23,64 @@
                 BoxLayout:
                     orientation:'horizontal'
                     Label:
+                        size_hint: (None, None)
+                        size: (30, 30)
                         text: '*'
                     Label:
                         text: 'Создание начальной популяции'
                 BoxLayout:
                     orientation:'horizontal'
                     Label:
+                        size_hint: (None, None)
+                        size: (30, 30)
                         text: ''
                     Label:
                         text: 'Вычисление фун.пригодности особи'
                 BoxLayout:
                     orientation:'horizontal'
                     Label:
+                        size_hint: (None, None)
+                        size: (30, 30)
                         text: ''
                     Label:
                         text: 'Выбор родителей'
                 BoxLayout:
                     orientation:'horizontal'
                     Label:
+                        size_hint: (None, None)
+                        size: (30, 30)
                         text: ''
                     Label:
                         text: 'Вычисление вероятности мутации'
                 BoxLayout:
                     orientation:'horizontal'
                     Label:
+                        size_hint: (None, None)
+                        size: (30, 30)
                         text: ''
                     Label:
                         text: 'Кроссинговер родителей'
                 BoxLayout:
                     orientation:'horizontal'
                     Label:
+                        size_hint: (None, None)
+                        size: (30, 30)
                         text: ''
                     Label:
                         text: 'Мутация потомков'
                 BoxLayout:
                     orientation:'horizontal'
                     Label:
+                        size_hint: (None, None)
+                        size: (30, 30)
                         text: ''
                     Label:
                         text: 'Вычисление пригодности потомков'
                 BoxLayout:
                     orientation:'horizontal'
                     Label:
+                        size_hint: (None, None)
+                        size: (30, 30)
                         text: ''
                     Label:
                         text: 'Создание новой популяции'
@@ -74,6 +90,7 @@
                 orientation:'vertical'
                 size_hint: (0.6, 1.0)
                 spacing: 10
+
         BoxLayout:
             orientation:'horizontal'
             spacing: 10
@@ -102,3 +119,4 @@
                     text: "Перейти к конечному результату"
                     size_hint: [None, None]
                     size: (250, 30) 
+                    on_press: root.controller.run_alg()
