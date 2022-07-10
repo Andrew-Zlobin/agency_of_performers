@@ -1,0 +1,323 @@
+#:kivy 1.0
+
+<ScreenSettings>:
+    BoxLayout:
+        orientation:'vertical'
+        spacing: 10
+        padding: 10
+        BoxLayout:
+            orientation:'horizontal'
+            spacing: 10
+            Label:
+                text: '[b]Настройки[/b]'
+                markup: True
+        BoxLayout:
+            orientation:'horizontal'
+            size_hint: (1.0, 10.0)
+            spacing: 10
+            BoxLayout:
+                orientation:'vertical'
+                size_hint: (0.5, 1.0)
+                BoxLayout:
+                    orientation:'horizontal'
+                    #size_hint: (0.5, 1.0)
+                    Label:
+                        id: population_size_text
+                        text: "Размер популяции"
+                        size_hint: [None, None]
+                        size: (300, 30)
+                    TextInput:
+                        id: population_size
+                        text: '50'
+                        size_hint: [None, None]
+                        size: (100, 30)
+                BoxLayout:
+                    orientation:'horizontal'
+                    Label:
+                        id: p_crossover_text
+                        text: "Вероятность кроссинговера"
+                        size_hint: [None, None]
+                        size: (300, 30)
+                    TextInput:
+                        id: p_crossover
+                        text: '0.01'
+                        size_hint: [None, None]
+                        size: (100, 30)
+                BoxLayout:
+                    orientation:'horizontal'
+                    Label:
+                        id: p_mutation_text
+                        text: "Вероятность мутаций"
+                        size_hint: [None, None]
+                        size: (300, 30)
+                    TextInput:
+                        id: p_mutation
+                        text: '0.01'
+                        size_hint: [None, None]
+                        size: (100, 30)
+                BoxLayout:
+                    orientation:'horizontal'
+                    Label:
+                        id: max_generations_text
+                        text: "Максимальное количество поколений"
+                        size_hint: [None, None]
+                        size: (300, 30)
+                    TextInput:
+                        id: max_generations
+                        text: '50'
+                        size_hint: [None, None]
+                        size: (100, 30)
+                BoxLayout:
+                    orientation:'horizontal'
+                    Label:
+                        text: "Метод создания особи"
+                        size_hint: [None, None]
+                        size: (300, 30)
+                    Button:
+                        id: individual_creator_method
+                        text: root.list_of_function_names['individual_creator_method']['_']
+                        size_hint: [None, None]
+                        size: (200, 30)
+                        on_parent: drop_individual_creator_method.dismiss()
+                        on_release: drop_individual_creator_method.open(self)
+                        drop_individual_creator_method: drop_individual_creator_method.__self__
+                    DropDown:
+                        id: drop_individual_creator_method
+                        on_select: individual_creator_method.text = f'{args[1]}'
+                        auto_width: False
+                        size_hint_x: None
+                        width: 200
+                        Button:
+                            id: individual_creator_method_1
+                            text: root.list_of_function_names['individual_creator_method']['_']
+                            size_hint_y: None
+                            height: '30dp'
+                            on_release: drop_individual_creator_method.select(individual_creator_method_1.text)
+                        Button:
+                            id: individual_creator_method_2
+                            text: root.list_of_function_names['individual_creator_method']['another_function']
+                            size_hint_y: None
+                            height: '30dp'
+                            on_release: drop_individual_creator_method.select(individual_creator_method_2.text)
+                        Button:
+                            id: individual_creator_method_3
+                            text: root.list_of_function_names['individual_creator_method']['another_function_2']
+                            size_hint_y: None
+                            height: '30dp'
+                            on_release: drop_individual_creator_method.select(individual_creator_method_3.text)
+                BoxLayout:
+                    orientation:'horizontal'
+                    Label:
+                        text: "Метод создания популяции"
+                        size_hint: [None, None]
+                        size: (300, 30)
+                    Button:
+                        id: population_creator_method
+                        text: root.list_of_function_names['population_creator_method']['_']
+                        size_hint: [None, None]
+                        size: (200, 30)
+                        on_parent: drop_population_creator_method.dismiss()
+                        on_release: drop_population_creator_method.open(self)
+                        drop_population_creator_method: drop_population_creator_method.__self__
+                    DropDown:
+                        id: drop_population_creator_method
+                        on_select: population_creator_method.text = f'{args[1]}'
+                        auto_width: False
+                        size_hint_x: None
+                        width: 200
+                        Button:
+                            id: population_creator_method_1
+                            text: root.list_of_function_names['population_creator_method']['_']
+                            size_hint_y: None
+                            height: '30dp'
+                            on_release: drop_population_creator_method.select(population_creator_method_1.text)
+                        Button:
+                            id: population_creator_method_2
+                            text: root.list_of_function_names['population_creator_method']['another_function']
+                            size_hint_y: None
+                            height: '30dp'
+                            on_release: drop_population_creator_method.select(population_creator_method_2.text)
+                        Button:
+                            id: population_creator_method_3
+                            text: root.list_of_function_names['population_creator_method']['another_function_2']
+                            size_hint_y: None
+                            height: '30dp'
+                            on_release: drop_population_creator_method.select(population_creator_method_3.text)
+                BoxLayout:
+                    orientation:'horizontal'
+                    Label:
+                        text: "cx_method"
+                        size_hint: [None, None]
+                        size: (300, 30)
+                    Button:
+                        id: cx_method
+                        text: root.list_of_function_names['cx_method']['cxOnePoint']
+                        size_hint: [None, None]
+                        size: (200, 30)
+                        on_parent: drop_cx_method.dismiss()
+                        on_release: drop_cx_method.open(self)
+                        drop_cx_method: drop_cx_method.__self__
+                    DropDown:
+                        id: drop_cx_method
+                        on_select: cx_method.text = f'{args[1]}'
+                        auto_width: False
+                        size_hint_x: None
+                        width: 200
+                        Button:
+                            id: cx_method_1
+                            text: root.list_of_function_names['cx_method']['cxOnePoint']
+                            size_hint_y: None
+                            height: '30dp'
+                            on_release: drop_cx_method.select(cx_method_1.text)
+                        Button:
+                            id: cx_method_2
+                            text: root.list_of_function_names['cx_method']['another_function']
+                            size_hint_y: None
+                            height: '30dp'
+                            on_release: drop_cx_method.select(cx_method_2.text)
+                        Button:
+                            id: cx_method_3
+                            text: root.list_of_function_names['cx_method']['another_function_2']
+                            size_hint_y: None
+                            height: '30dp'
+                            on_release: drop_cx_method.select(cx_method_3.text)
+                BoxLayout:
+                    orientation:'horizontal'
+                    Label:
+                        text: "Тип мутации"
+                        size_hint: [None, None]
+                        size: (300, 30)
+                    Button:
+                        id: mut_method
+                        text: root.list_of_function_names['mut_method']['mutation_neighb_trans']
+                        size_hint: [None, None]
+                        size: (200, 30)
+                        on_parent: drop_mut_method.dismiss()
+                        on_release: drop_mut_method.open(self)
+                        drop_mut_method: drop_mut_method.__self__
+                    DropDown:
+                        id: drop_mut_method
+                        on_select: mut_method.text = f'{args[1]}'
+                        auto_width: False
+                        size_hint_x: None
+                        width: 200
+                        Button:
+                            id: mut_method_1
+                            text: root.list_of_function_names['mut_method']['mutation_neighb_trans']
+                            size_hint_y: None
+                            height: '30dp'
+                            on_release: drop_mut_method.select(mut_method_1.text)
+                        Button:
+                            id: mut_method_2
+                            text: root.list_of_function_names['mut_method']['another_function']
+                            size_hint_y: None
+                            height: '30dp'
+                            on_release: drop_mut_method.select(mut_method_2.text)
+                        Button:
+                            id: mut_method_3
+                            text: root.list_of_function_names['mut_method']['another_function_2']
+                            size_hint_y: None
+                            height: '30dp'
+                            on_release: drop_mut_method.select(mut_method_3.text)
+                BoxLayout:
+                    orientation:'horizontal'
+                    Label:
+                        text: "Метод селекции"
+                        size_hint: [None, None]
+                        size: (300, 30)
+                    Button:
+                        id: select_method
+                        text: root.list_of_function_names['select_method']['selTournament']
+                        size_hint: [None, None]
+                        size: (200, 30)
+                        on_parent: drop_select_method.dismiss()
+                        on_release: drop_select_method.open(self)
+                        drop_select_method: drop_select_method.__self__
+                    DropDown:
+                        id: drop_select_method
+                        on_select: select_method.text = f'{args[1]}'
+                        auto_width: False
+                        size_hint_x: None
+                        width: 200
+                        Button:
+                            id: select_method_1
+                            text: root.list_of_function_names['select_method']['selTournament']
+                            size_hint_y: None
+                            height: '30dp'
+                            on_release: drop_select_method.select(select_method_1.text)
+                        Button:
+                            id: select_method_2
+                            text: root.list_of_function_names['select_method']['another_function']
+                            size_hint_y: None
+                            height: '30dp'
+                            on_release: drop_select_method.select(select_method_2.text)
+                        Button:
+                            id: select_method_3
+                            text: root.list_of_function_names['select_method']['another_function_2']
+                            size_hint_y: None
+                            height: '30dp'
+                            on_release: drop_select_method.select(select_method_3.text)
+                BoxLayout:
+                    orientation:'horizontal'
+                    Label:
+                        text: "Метод эволюции"
+                        size_hint: [None, None]
+                        size: (300, 30)
+                    Button:
+                        id: evaluate_method
+                        text: root.list_of_function_names['evaluate_method']['fitness']
+                        size_hint: [None, None]
+                        size: (200, 30)
+                        on_parent: drop_evaluate_method.dismiss()
+                        on_release: drop_evaluate_method.open(self)
+                        drop_evaluate_method: drop_evaluate_method.__self__
+                    DropDown:
+                        id: drop_evaluate_method
+                        on_select: evaluate_method.text = f'{args[1]}'
+                        auto_width: False
+                        size_hint_x: None
+                        width: 200
+                        Button:
+                            id: evaluate_method_1
+                            text: root.list_of_function_names['evaluate_method']['fitness']
+                            size_hint_y: None
+                            height: '30dp'
+                            on_release: drop_evaluate_method.select(evaluate_method_1.text)
+                        Button:
+                            id: evaluate_method_2
+                            text: root.list_of_function_names['evaluate_method']['another_function']
+                            size_hint_y: None
+                            height: '30dp'
+                            on_release: drop_evaluate_method.select(evaluate_method_2.text)
+                        Button:
+                            id: evaluate_method_3
+                            text: root.list_of_function_names['evaluate_method']['another_function_2']
+                            size_hint_y: None
+                            height: '30dp'
+                            on_release: drop_evaluate_method.select(evaluate_method_3.text)
+                    
+
+
+        BoxLayout:
+            orientation:'horizontal'
+            spacing: 10
+            AnchorLayout:
+                anchor_x: 'left'
+                anchor_y: 'bottom'
+                Button:
+                    text: "Сохранить"
+                    size_hint: [None, None]
+                    size: (150, 30) 
+                    on_press: root.save_settings()
+            AnchorLayout:
+                anchor_x: 'right'
+                anchor_y: 'bottom'
+                Button:
+                    text: "Назад"
+                    size_hint: [None, None]
+                    size: (150, 30) 
+                    on_press:
+                        root.manager.transition.direction = 'left'
+                        root.manager.transition.duration = 0.3
+                        root.manager.current = 'screen_main'
+            

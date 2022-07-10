@@ -1,0 +1,122 @@
+#:kivy 1.0
+
+<ScreenRunAlg>:
+    BoxLayout:
+        orientation:'vertical'
+        spacing: 10
+        padding: 10
+        BoxLayout:
+            orientation:'horizontal'
+            spacing: 10
+            Label:
+                text: '[b]Выполнение[/b]'
+                markup: True
+        BoxLayout:
+            orientation:'horizontal'
+            size_hint: (1.0, 10.0)
+            spacing: 10
+            BoxLayout:
+                id: steps
+                orientation:'vertical'
+                size_hint: (0.4, 1.0)
+                spacing: 10
+                BoxLayout:
+                    orientation:'horizontal'
+                    Label:
+                        size_hint: (None, None)
+                        size: (30, 30)
+                        text: '*'
+                    Label:
+                        text: 'Создание начальной популяции'
+                BoxLayout:
+                    orientation:'horizontal'
+                    Label:
+                        size_hint: (None, None)
+                        size: (30, 30)
+                        text: ''
+                    Label:
+                        text: 'Вычисление фун.пригодности особи'
+                BoxLayout:
+                    orientation:'horizontal'
+                    Label:
+                        size_hint: (None, None)
+                        size: (30, 30)
+                        text: ''
+                    Label:
+                        text: 'Выбор родителей'
+                BoxLayout:
+                    orientation:'horizontal'
+                    Label:
+                        size_hint: (None, None)
+                        size: (30, 30)
+                        text: ''
+                    Label:
+                        text: 'Вычисление вероятности мутации'
+                BoxLayout:
+                    orientation:'horizontal'
+                    Label:
+                        size_hint: (None, None)
+                        size: (30, 30)
+                        text: ''
+                    Label:
+                        text: 'Кроссинговер родителей'
+                BoxLayout:
+                    orientation:'horizontal'
+                    Label:
+                        size_hint: (None, None)
+                        size: (30, 30)
+                        text: ''
+                    Label:
+                        text: 'Мутация потомков'
+                BoxLayout:
+                    orientation:'horizontal'
+                    Label:
+                        size_hint: (None, None)
+                        size: (30, 30)
+                        text: ''
+                    Label:
+                        text: 'Вычисление пригодности потомков'
+                BoxLayout:
+                    orientation:'horizontal'
+                    Label:
+                        size_hint: (None, None)
+                        size: (30, 30)
+                        text: ''
+                    Label:
+                        text: 'Создание новой популяции'
+            
+            BoxLayout:
+                id: mpl_graph
+                orientation:'vertical'
+                size_hint: (0.6, 1.0)
+                spacing: 10
+
+        BoxLayout:
+            orientation:'horizontal'
+            spacing: 10
+            AnchorLayout:
+                anchor_x: 'left'
+                anchor_y: 'bottom'
+                Button:
+                    text: "Назад"
+                    size_hint: [None, None]
+                    size: (150, 30) 
+                    on_press:
+                        root.manager.transition.direction = 'right'
+                        root.manager.transition.duration = 0.3
+                        root.manager.current = 'screen_main'
+            Button:
+                id: next_step_button
+                text: "Перейти к следующему шагу"
+                size_hint: [None, None]
+                size: (250, 30)
+                on_press: root.next_step()
+
+            AnchorLayout:
+                anchor_x: 'right'
+                anchor_y: 'bottom'
+                Button:
+                    text: "Перейти к конечному результату"
+                    size_hint: [None, None]
+                    size: (250, 30) 
+                    on_press: root.controller.run_alg()
