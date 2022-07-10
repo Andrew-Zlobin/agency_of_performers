@@ -3,14 +3,14 @@ class Settings_alg:
     self.const_alg = {           # настройки по умолчанию
     'POPULATION_SIZE' : '5',   # количество индивидуумов в популяции
     'upper_limit_crossover' : '0.9',       # вероятность скрещивания
-    'lower_bound_crossover' : '0.0',       # вероятность скрещивания
+    'lower_bound_crossover' : '0.2',       # вероятность скрещивания
     'upper_limit_mutation' : '0.9',        # вероятность мутации индивидуума
-    'lower_bound_mutation' : '0.0',
+    'lower_bound_mutation' : '0.2',
     'percentage parents' : '0.5',
-    'MAX_GENERATIONS' : '30',    # максимальное количество поколений
-    'cx_method' : 'Single Point',
+    'MAX_GENERATIONS' : '5',    # максимальное количество поколений
+    'cx_method' : 'Single Point Mod',
     'mut_method' : 'Transposition adjacent genes',
-    'select_method' : 'Tournament selection'
+    'select_method' : 'Better half choice'
     }  
 
 

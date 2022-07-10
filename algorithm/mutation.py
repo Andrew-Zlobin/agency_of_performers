@@ -2,7 +2,7 @@ import random
 
 
 def transposition_adjacent_genes(individual):
-  gen = random.randint(0, len(individual) - 2)
+  gen = random.randint(1, len(individual) - 2)
   individual[gen], individual[gen + 1] = individual[gen + 1], individual[gen]
   return individual
 
