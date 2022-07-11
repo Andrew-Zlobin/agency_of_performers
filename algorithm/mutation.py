@@ -18,7 +18,7 @@ def gene_inversion(individual):
 def transposition_any_genes(individual):
   gen1 = gen2 = 0
   while gen1 == gen2:
-      gen1, gen2 = random.randint(0, len(individual) - 1), random.randint(0, len(individual) - 1)
+      gen1, gen2 = random.randint(1, len(individual) - 1), random.randint(1, len(individual) - 1)
   individual[gen1], individual[gen2] = individual[gen2], individual[gen1]
   return individual
 
@@ -29,7 +29,7 @@ def mutation_gauss(indv, muatation_rate = 2):
   return indv
 
 
-def possibility_mutation(individual, mutation_probability, method = 'Transposition of adjacent genes'):
+def possibility_mutation(individual, mutation_probability, method):
   chance = random.random()
   if chance > mutation_probability:
     return individual

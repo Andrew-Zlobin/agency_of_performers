@@ -6,7 +6,7 @@ import numpy as np
 def cx_one_point(parents):
     child1 = parents[0]
     child2 = parents[1]  
-    genes = random.randint(2, len(parents[0])-3)
+    genes = random.randint(1, len(parents[0])-1)
     child1[genes:], child2[genes:] = child2[genes:], child1[genes:]
     return child1, child2
 
@@ -57,7 +57,7 @@ def cx_two_point(parents):
   return child1, child2
 
 
-def choice_crossover_method(parents, method='Single Point Mod'):
+def choice_crossover_method(parents, method):
   if method == 'Single Point':
     child1, child2 = cx_one_point(parents)
   if method == 'Single Point Mod':

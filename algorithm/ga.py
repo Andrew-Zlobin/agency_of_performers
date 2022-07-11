@@ -15,7 +15,7 @@ from mutation_and_crossover_probability import calculate_mutation_probability_in
 #algorithm
 new_graph = graph_alg.Graph_alg()
 settings = setting_alg.Settings_alg()
-inf = 100
+inf = 1000
 graph = [[0, 3, 1, 3, inf, inf],
      [3, 0, 4, inf, inf, inf],
      [1, 4, 0, inf, 7, 5],
@@ -30,7 +30,7 @@ percentage_parents = float(settings['percentage parents'])
 # создание начальной популяции
 for start_v in range(len(graph)):
   for finish_v in range(len(graph)):
-    if start_v != finish_v and start_v < finish_v:
+    if start_v != finish_v:
       population = population_creator(graph, start_v, population_size)
       for i in range(int(settings['MAX_GENERATIONS'])):
         cum_sum = cum_sum_calc(population, start_v, finish_v)
@@ -70,18 +70,28 @@ for start_v in range(len(graph)):
             #chance_mutation_child1 = calculate_mutation_probability_individual(crossover_probability_array, parent1, population)
             chance_mutation_child2 = calculate_mutation_probability_individual(mutation_probability_array, parent2, parents)
             population = fitness_individual_in_population(population, child2, chance_mutation_child2, settings['mut_method'], start_v, finish_v)
+
           else:
             continue
-        cum_sum = cum_sum_calc(population, start_v, finish_v)
-        zipped_list = zip(cum_sum, population)
-        sorted_list = sorted(zipped_list)
-        population_size = len(population) * percentage_parents
-        new_list = [value[1] for value in sorted_list]
-        print(start_v, finish_v, new_list[0])
+          cum_sum = cum_sum_calc(population, start_v, finish_v)
+          zipped_list = zip(cum_sum, population)
+          sorted_list = sorted(zipped_list)
+          new_list = [value[1] for value in sorted_list]
+      #for i in  range(len(new_list[0])):
+      #  new_list[0][i] += 1
+      #print(start_v + 1, finish_v + 1, new_list[0])
+      new_list[0] = new_list[0][new_list[0].index(start_v):new_list[0].index(finish_v) + 1]
+      output_graph[start_v][finish_v] = new_list[0]
+      
         #print(population)
-        output_graph[start_v][finish_v] = new_list[0][new_list[0].index(start_v):new_list[0].index(finish_v)]
+        #output_graph[start_v][finish_v] = new_list[0][new_list[0].index(start_v):new_list[0].index(finish_v)]
+    else:
+      
+      output_graph[start_v][finish_v] = [0]
 for line in output_graph:
   print(line)
 #print(output_graph)
+#print(output_graph)
 # оценка выживаемости особи
 # добавление в популяцию 
+# повторение вершин
